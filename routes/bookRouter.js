@@ -8,6 +8,7 @@ function routes(Book) {
   bookRouter.route('/books')
     .post(controller.post)
     .get(controller.get)
+
   bookRouter.use('/books/:bookId', (req, res, next) => {
     Book.findById(req.params.bookId, (err, book) => {
       if (err) {
@@ -20,6 +21,7 @@ function routes(Book) {
       return res.sendStatus(404)
     }) 
   })
+
   bookRouter.route('/books/:bookId')
     .get((req, res) => res.json(req.book))
     .put((req, res) => {
